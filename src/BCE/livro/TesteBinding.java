@@ -26,7 +26,8 @@ public class TesteBinding extends Application {
         TextField textField3 = new TextField();
         TextField textField4 = new TextField();
 
-    // VAMOS FAZER O BINDING!!!!!!!
+    // VAMOS FAZER O BINDING!!!!!!
+    //Replicar o texto de uma textField para outra em tempo real
         Bindings.bindBidirectional(textField1.textProperty(), textField2.textProperty());
         textField4.textProperty().bind(textField3.textProperty());
 

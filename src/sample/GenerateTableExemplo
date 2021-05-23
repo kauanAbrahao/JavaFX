@@ -1,0 +1,19 @@
+Na control:
+public void generateTable(){
+	TableColumn<Livro, Long> colId = new TableColumn("Id");
+	coldId.setCellValueFactory(new PropertyValueFactory<Livro,Long>("id"));
+
+	TableColumn<Livro, String> colTitulo = new TableColumn("Titulo");
+	coldTitulo.setCellValueFactory(new PropertyValueFactory<Livro,String>("titulo"));
+
+	TableColumn<Livro, String> colAutor = new TableColumn("Autor);
+	coldAutor.setCellValueFactory(new PropertyValueFactory<Livro,String>("titulo"));
+
+	table.getColumns().addAll(colId, colAutor, colTitulo);
+	table.setItems(livros);
+}
+
+Na view:
+	private TableView<Livro> = new TableView<>();
+
+

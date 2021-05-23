@@ -1,12 +1,16 @@
 package BCE.livro;
 
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import javafx.util.converter.DateStringConverter;
+import javafx.util.converter.LongStringConverter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -52,10 +56,18 @@ public class LivroBoundary extends Application {
         gridPane.add(btnAdicionar, 0 ,7);
         gridPane.add(btnPesquisar, 1, 7);
 
-        btnAdicionar.setOnAction((e)->livroControl.adicionarLivro(boundaryToEntity()));
-        btnPesquisar.setOnAction((e) -> entityToBoundary(livroControl.pesquisarLivroPorTitulo
-                (txtTitulo.getText()))
+        btnAdicionar.setOnAction((e)->livroControl.adicionarLivro());
+        btnPesquisar.setOnAction((e) -> entityToBoundary(livroControl.pesquisarLivroPorTitulo())
         );
+
+        //Criando um vinculo com as propriedades da Control
+        StringConverter longToStringConverter = new LongStringConverter();
+        StringConverter dateToStringConverter = new DateStringConverter();
+
+        Bindings.bindBidirectional(txtId.textProperty(), livroControl.idProperty(), longToStringConverter);
+        Bindings.bindBidirectional(txtTitulo.textProperty(), livroControl.tituloProperty());
+        Bindings.bindBidirectional(txtLancamento.textProperty(), livroControl.lancamentoProperty(), dateToStringConverter);
+        //todos os atributos...
 
         stage.setScene(scene);
         stage.setTitle("Gestão de Livros");
